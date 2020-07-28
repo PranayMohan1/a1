@@ -1,0 +1,22 @@
+{% extends 'music/base.html' %}
+{% block title %}Viberr{% endblock %}
+
+{% block body %}
+<ul>
+    {% for i in object_list %}
+    <li><a href="{% url 'music:details' i.id %}" >{{ i.album_title }}</a></li>&nbsp;
+    <form action="{% url 'music:album-delete' i.id %}" method="post" >
+        {% csrf_token %}
+        <input type="hidden" name="album_id" value="{{ i.id }}"/>
+        <button type="submit" class="btn btn-success" value="Submit"><span>Delete</span></button>
+    </form>
+    <form action="{% url 'music:album-update' i.id %}" method="post" >
+        {% csrf_token %}
+        <input type="hidden" name="album_id" value="{{ i.id }}"/>
+        <button type="submit" class="btn btn-success" value="Submit" ><span>EDIT</span></button>
+    </form>
+
+
+    {% endfor %}
+</ul>
+{% endblock %}

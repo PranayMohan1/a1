@@ -1,0 +1,29 @@
+{% extends 'music/base.html' %}
+{% block title %}Show Details{% endblock %}
+{% block body %}
+<div class="pic"><img src="{{ album.album_logo }}" aria-placeholder="haha"></div>
+<h1> Artist Name - {{ album.artist }}</h1>
+<h2>Genre - {{ album.genre }}</h2>
+<h2>Album-Title - {{ album.album_title }}</h2>
+{% for i in album.song_set.all %}
+     <input type="radio" id="song {{ forloop.counter }} " name="song" value="{{ i.id }}" >
+     <label for = "song {{ forloop.counter }}">
+        {{ i.song_title }}
+        {% if i.is_fav %}
+           <h5 style="display:inline;" >**</h5>
+        {% endif %}
+
+
+    </label><br>
+{% endfor %}
+<div class="add-button">
+<a href="#">
+     <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>&nbsp;Add Song
+</a>
+</div>
+
+
+
+
+
+{% endblock %}

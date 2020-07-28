@@ -1,0 +1,5 @@
+{% for f in form %}
+<span class="text-danger small">{{ f.errors }}</span>
+<label>{{ f.label_tag }}</label>
+<div>{{ f }}</div>
+{% endfor %}
